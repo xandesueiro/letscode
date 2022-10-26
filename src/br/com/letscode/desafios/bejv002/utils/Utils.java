@@ -24,4 +24,18 @@ public class Utils {
 
         return isEqual;
     }
+
+    public static boolean isSumAcceptableError(double sumMatrix1, double sumMatrix2, double acceptableError){
+        boolean isEqual = false;
+
+        double diff = sumMatrix2 - sumMatrix1;
+        isEqual = diff <= acceptableError;
+
+        return isEqual;
+    }
+
+    public static double diffTotalMatrix(double sumMatrix1, double sumMatrix2, int scale){
+        double diff = sumMatrix2 - sumMatrix1;
+        return new BigDecimal(diff).setScale(scale, RoundingMode.UP).doubleValue();
+    }
 }

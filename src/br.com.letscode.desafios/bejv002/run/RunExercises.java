@@ -15,7 +15,17 @@ public class RunExercises {
         try {
             exercise.print(ExerciseStatement.CHALLENGE7);
             exercise.print(ExerciseStatement.CHALLENGE7_1);
-            solution.solution();
+            solution.solution(ExerciseStatement.CHALLENGE7_1);
+
+            System.out.println("-------------------------------NEXT------------------------------------\n");
+
+            exercise.print(ExerciseStatement.CHALLENGE7_2);
+            solution.solution(ExerciseStatement.CHALLENGE7_2);
+
+            System.out.println("-------------------------------NEXT------------------------------------\n");
+
+            exercise.print(ExerciseStatement.CHALLENGE7_3);
+            solution.solution(ExerciseStatement.CHALLENGE7_3);
 
         } catch (Exception exception){
             System.out.println(exception.getMessage() + " - " + exception.getCause());
