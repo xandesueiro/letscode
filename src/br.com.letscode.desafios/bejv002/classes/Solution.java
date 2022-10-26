@@ -18,6 +18,11 @@ public class Solution {
 
         System.out.println("\n--------------------------------------------");
         System.out.println("The greatest sequence is \"" + sortedArr[vector.length-1] + "\"");
+        System.out.println("--------------------------------------------");
+
+        String longestSequence = sortedArray.substring(sortedArr);
+        System.out.println("\n--------------------------------------------");
+        System.out.println("The longest alphabetic sequence is \"" + longestSequence + "\"");
         System.out.println("-------------------END----------------------");
 
     }
