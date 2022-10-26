@@ -16,6 +16,10 @@ public class Solution {
         String[] sortedArr = sortedArray.stringArraySort(arrToSort);
         sortedArray.print(sortedArr);
 
+        System.out.println("\n--------------------------------------------");
+        System.out.println("The greatest sequence is \"" + sortedArr[vector.length-1] + "\"");
+        System.out.println("-------------------END----------------------");
+
     }
 
     public static void createMainStatement(){
