@@ -1,12 +1,12 @@
-package br.com.letscode.desafios.bejv002.run;
+package br.com.letscode.bejv002.desafios.main;
 
-import br.com.letscode.desafios.bejv002.classes.Exercise;
-import br.com.letscode.desafios.bejv002.classes.Exercise7;
-import br.com.letscode.desafios.bejv002.classes.ExerciseSolution;
-import br.com.letscode.desafios.bejv002.classes.ExerciseSolution7;
-import br.com.letscode.desafios.bejv002.enums.ExerciseStatement;
+import br.com.letscode.bejv002.desafios.classes.Exercise7;
+import br.com.letscode.bejv002.desafios.classes.ExerciseSolution;
+import br.com.letscode.bejv002.desafios.classes.ExerciseSolution7;
+import br.com.letscode.bejv002.desafios.classes.Exercise;
+import br.com.letscode.bejv002.desafios.enums.ExerciseStatement;
 
-public class RunExercises {
+public class ExercisesMain {
 
     public static void main(String[] args) {
 

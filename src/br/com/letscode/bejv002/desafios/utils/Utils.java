@@ -1,4 +1,4 @@
-package br.com.letscode.desafios.bejv002.utils;
+package br.com.letscode.bejv002.desafios.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

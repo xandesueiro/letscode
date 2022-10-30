@@ -1,7 +1,7 @@
-package br.com.letscode.desafios.bejv002.classes;
+package br.com.letscode.bejv002.desafios.classes;
 
-import br.com.letscode.desafios.bejv002.enums.ExerciseStatement;
-import br.com.letscode.desafios.bejv002.utils.Utils;
+import br.com.letscode.bejv002.desafios.enums.ExerciseStatement;
+import br.com.letscode.bejv002.desafios.utils.Utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

@@ -1,4 +1,4 @@
-package br.com.letscode.desafios.bejv002.classes;
+package br.com.letscode.bejv002.desafios.classes;
 
 import java.util.Arrays;
 

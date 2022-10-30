@@ -1,15 +1,15 @@
-package br.com.letscode.desafios.bejv002.run;
+package br.com.letscode.bejv002.desafios.main;
 
 
-import br.com.letscode.desafios.bejv002.classes.Currency;
-import br.com.letscode.desafios.bejv002.classes.Dollar;
+import br.com.letscode.bejv002.desafios.classes.Currency;
+import br.com.letscode.bejv002.desafios.classes.Dollar;
 
 import java.util.Scanner;
 
-public class RunQuote {
+public class QuoteMain {
 
     public static void main(String[] args) {
-        RunQuote runQuote= new RunQuote();
+        QuoteMain runQuote= new QuoteMain();
         Scanner answer = new Scanner(System.in);
         String currencyType;
         double dailyQuote;

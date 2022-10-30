@@ -1,6 +1,4 @@
-package br.com.letscode.desafios.bejv002.classes;
-
-import java.util.Arrays;
+package br.com.letscode.bejv002.desafios.classes;
 
 public class Solution {
 

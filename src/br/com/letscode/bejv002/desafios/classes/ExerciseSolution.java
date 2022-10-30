@@ -1,6 +1,6 @@
-package br.com.letscode.desafios.bejv002.classes;
+package br.com.letscode.bejv002.desafios.classes;
 
-import br.com.letscode.desafios.bejv002.enums.ExerciseStatement;
+import br.com.letscode.bejv002.desafios.enums.ExerciseStatement;
 
 public abstract class ExerciseSolution {
 

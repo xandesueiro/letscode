@@ -1,4 +1,4 @@
-package br.com.letscode.desafios.bejv002.enums;
+package br.com.letscode.bejv002.desafios.enums;
 
 public enum ExerciseStatement {
     CHALLENGE7,

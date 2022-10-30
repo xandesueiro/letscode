@@ -1,9 +1,9 @@
-package br.com.letscode.desafios.bejv002.run;
+package br.com.letscode.bejv002.desafios.main;
 
-import br.com.letscode.desafios.bejv002.classes.Form;
-import br.com.letscode.desafios.bejv002.classes.ListProducts;
+import br.com.letscode.bejv002.desafios.classes.Form;
+import br.com.letscode.bejv002.desafios.classes.ListProducts;
 
-public class RunProductList {
+public class ProductListMain {
     public static void main(String[] args) {
         try {
             ListProducts lp = new Form().run();
