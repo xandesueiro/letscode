@@ -2,6 +2,7 @@ package br.com.letscode.bejv002.fixacao;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -10,8 +11,8 @@ public class Funcionario {
     private String nome;
     private String cpf;
 
-    private double salario;
-    private double salarioProporcional;
+    private BigDecimal salario;
+    private BigDecimal salarioProporcional;
     private int quantidadeDiasTrabalhado;
 
     private static final int DIAS_UTEIS_MES_DE_TRABALHO = 22;
@@ -19,8 +20,9 @@ public class Funcionario {
 
     public Funcionario( String strNome,
                         String strCPF,
-                        double dblSalario,
+                        BigDecimal dblSalario,
                         int quantidadeDiasReaisTrabalhadosPeloFuncionario) throws Exception {
+
         this.setNome(strNome);
 
         if (strCPF.length() != 11){
@@ -36,12 +38,13 @@ public class Funcionario {
     public void calculaSalarioProporcionalDiasTrabalhados(){
         double qtdeDiasTrabalhado = getQuantidadeDiasTrabalhado();
         double qtdeDiasUteisParaTrabalho = DIAS_UTEIS_MES_DE_TRABALHO;
-        double diasProporcionaisDeTrabalho  = qtdeDiasTrabalhado / qtdeDiasUteisParaTrabalho;
+        BigDecimal diasProporcionaisDeTrabalho  = new BigDecimal(qtdeDiasTrabalhado / qtdeDiasUteisParaTrabalho);
+        BigDecimal bdSalarioProporcional = diasProporcionaisDeTrabalho.multiply(this.getSalario());
 
-        this.setSalarioProporcional(new BigDecimal(diasProporcionaisDeTrabalho * this.getSalario())
+        this.setSalarioProporcional(BigDecimal.valueOf(bdSalarioProporcional
                                     .setScale(2,
                                     RoundingMode.UP)
-                                    .doubleValue()
+                                    .doubleValue())
                                     );
     }
 
@@ -49,7 +52,7 @@ public class Funcionario {
         return nome;
     }
 
-    public void setNome(String nome) {
+    private void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -57,23 +60,23 @@ public class Funcionario {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    private void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public double getSalario() {
+    public BigDecimal getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    private void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
 
-    public double getSalarioProporcional() {
+    public BigDecimal getSalarioProporcional() {
         return salarioProporcional;
     }
 
-    public void setSalarioProporcional(double salarioProporcional) {
+    private void setSalarioProporcional(BigDecimal salarioProporcional) {
         this.salarioProporcional = salarioProporcional;
     }
 
@@ -81,7 +84,7 @@ public class Funcionario {
         return quantidadeDiasTrabalhado;
     }
 
-    public void setQuantidadeDiasTrabalhado(int quantidadeDiasTrabalhado) {
+    private void setQuantidadeDiasTrabalhado(int quantidadeDiasTrabalhado) {
         this.quantidadeDiasTrabalhado = quantidadeDiasTrabalhado;
     }
 
@@ -97,9 +100,9 @@ public class Funcionario {
         sb.append("- CPF do Funcionário: ").append(formatarCPF()).append("\n");
         sb.append(criaLinhaSeparacaoHollertite()).append("\n");
         sb.append("- Dias Úteis: " + DIAS_UTEIS_MES_DE_TRABALHO + " dias").append("\n");
-        sb.append("- Salario do Funcionário: R$").append(this.getSalario()).append("\n");
+        sb.append("- Salario do Funcionário: ").append(formatarValoresEmMoedaLocal(this.getSalario())).append("\n");
         sb.append("- Dias Reais Trabalhados pelo Funcionário: ").append(this.getQuantidadeDiasTrabalhado()).append(" dias").append("\n");
-        sb.append("- Salario Proporcional de Funcionário: R$").append(this.getSalarioProporcional()).append("\n");
+        sb.append("- Salario Proporcional de Funcionário: R$").append(formatarValoresEmMoedaLocal(this.getSalarioProporcional())).append("\n");
         sb.append(criaLinhaSeparacaoHollertite()).append("\n");
         sb.append("- Informações de controle").append("\n");
         sb.append("- --> HasCode: @").append(hashCode()).append("\n");
@@ -140,12 +143,20 @@ public class Funcionario {
         return cpfBlocos.toString();
     }
 
+    public String formatarValoresEmMoedaLocal(BigDecimal valor) {
+        String valorFormatado;
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        valorFormatado = nf.format(Objects.requireNonNullElseGet(valor, () -> new BigDecimal(0.00)));
+
+        return valorFormatado;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Funcionario{ ");
-        sb.append("nome= '").append(nome).append('\'');
-        sb.append(", cpf= '").append(cpf).append('\'');
-        sb.append(", salario=").append(salario);
+        sb.append("nome= '").append(this.getNome()).append('\'');
+        sb.append(", cpf= '").append(this.getCpf()).append('\'');
+        sb.append(", salario= ").append(formatarValoresEmMoedaLocal(this.getSalario()));
         sb.append(" }");
         return sb.toString();
     }
@@ -155,7 +166,7 @@ public class Funcionario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Funcionario that = (Funcionario) o;
-        return Double.compare(that.salario, salario) == 0 && Objects.equals(nome, that.nome) && Objects.equals(cpf, that.cpf);
+        return Objects.equals(nome, that.nome) && Objects.equals(cpf, that.cpf);
     }
 
     @Override

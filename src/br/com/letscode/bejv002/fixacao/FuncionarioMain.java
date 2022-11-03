@@ -1,17 +1,19 @@
 package br.com.letscode.bejv002.fixacao;
 
+import java.math.BigDecimal;
+
 public class FuncionarioMain {
 
     public static void main(String[] args) {
         String nome;
         String cpf;
-        double salario;
+        BigDecimal salario;
         int diasReaisTrabalhados;
 
         try {
             nome = "joao da silva";
             cpf = "22233344455";
-            salario = 8500.87;
+            salario = new BigDecimal("8500.87");
             diasReaisTrabalhados = 22;
             Funcionario joao = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
             System.out.println(joao);
@@ -19,7 +21,7 @@ public class FuncionarioMain {
 
             nome = "Maria de Souza Rodrigues";
             cpf = "66677788899";
-            salario = 18500.18;
+            salario = new BigDecimal("18500.18");
             diasReaisTrabalhados = 18;
             Funcionario maria = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
             System.out.println(maria);
@@ -27,7 +29,7 @@ public class FuncionarioMain {
 
             nome = "Maria de Souza Rodrigues";
             cpf = "66677788899";
-            salario = 18500.18;
+            salario = new BigDecimal("18500.18");
             diasReaisTrabalhados = 25;
             Funcionario mariaSouza = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
             System.out.println(mariaSouza);
