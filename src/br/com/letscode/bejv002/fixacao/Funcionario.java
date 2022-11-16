@@ -46,8 +46,14 @@ public class Funcionario extends Pessoa {
                                     );
     }
 
+    @Override
     public String getNome() {
         return super.getNome();
+    }
+
+    @Override
+    public String getNumeroDocumento() {
+        return super.getNumeroDocumento();
     }
 
     public BigDecimal getSalario() {
@@ -73,7 +79,6 @@ public class Funcionario extends Pessoa {
     private void setQuantidadeDiasTrabalhado(int quantidadeDiasTrabalhado) {
         this.quantidadeDiasTrabalhado = quantidadeDiasTrabalhado;
     }
-
 
     public void imprimirHollerite(String formatoApresentacaoData){
         StringBuilder sb = new StringBuilder();

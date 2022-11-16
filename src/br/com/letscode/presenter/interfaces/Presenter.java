@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public interface Presenter <T extends Scanner, U extends Banco>{
 
-    public void print(U banco) throws PresenterException;
+    void print(U banco) throws PresenterException;
 
-    public String interagirPerguntas(T scanner, String pergunta) throws PresenterException ;
+    String interagirPerguntas(T scanner, String pergunta) throws PresenterException ;
 
-    public String prepare(U banco) throws PresenterException;
+    String prepare(U banco) throws PresenterException;
 
 
 }

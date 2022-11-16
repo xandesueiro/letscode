@@ -32,34 +32,8 @@ public class KeyValueImp implements Presenter {
 
         try {
             sb.append("{\n");
+            mergeListFields(banco.getClass(), banco, sb);
 
-            Field fieldlist[] = banco.getClass().getDeclaredFields();
-            Method getMethod = null;
-
-            for (int i = 0; i < fieldlist.length; i++) {
-                Field fld = fieldlist[i];
-                int mod = fld.getModifiers();
-
-                if (!UtilitarioString.contemAPalavra(Modifier.toString(mod), "static")){
-                    try {
-                        getMethod = banco.getClass().getDeclaredMethod("get" + UtilitarioString.converterPrimeiraLetraParaMaiuscula(fld.getName()));
-                        Object obj = getMethod.invoke(banco, null);
-
-                        char virgula = (i == (fieldlist.length-1)) ? ' ' : ',';
-
-                        sb.append("    \"").append(fld.getName())
-                                .append("\"")
-                                .append(" : ")
-                                .append("\"")
-                                .append(obj)
-                                .append("\"")
-                                .append(virgula)
-                                .append("\n");
-                    }catch (Exception exception){
-                        //System.out.println(exception.getMessage() + " - " + exception.getCause());
-                    }
-                }
-            }
             sb.append("}");
         }
         catch (Throwable e) {
@@ -70,4 +44,43 @@ public class KeyValueImp implements Presenter {
         sb.replace(sb.length()-3, sb.length()-2, " ");
         return sb.toString();
     }
+
+    private void mergeListFields(Class<?> bancoClass, Banco banco, StringBuffer sb){
+        Class<?> superclass;
+
+        if(bancoClass.getSuperclass() != null){
+            superclass = bancoClass.getSuperclass();
+            mergeListFields(superclass, banco, sb);
+        }
+
+        Field fieldlist[] = bancoClass.getDeclaredFields();
+        Method getMethod = null;
+
+        for (int i = 0; i < fieldlist.length; i++) {
+            Field fld = fieldlist[i];
+            int mod = fld.getModifiers();
+
+            if (!UtilitarioString.contemAPalavra(Modifier.toString(mod), "static")){
+                try {
+                    getMethod = banco.getClass().getDeclaredMethod("get" + UtilitarioString.converterPrimeiraLetraParaMaiuscula(fld.getName()));
+                    getMethod.setAccessible(true);
+                    Object resultadoMetodo = getMethod.invoke(banco, null);
+
+                    char virgula = (i == (fieldlist.length-1)) ? ' ' : ',';
+
+                    sb.append("    \"").append(fld.getName())
+                            .append("\"")
+                            .append(" : ")
+                            .append("\"")
+                            .append(resultadoMetodo)
+                            .append("\"")
+                            .append(virgula)
+                            .append("\n");
+                }catch (Exception exception){
+                    //System.out.println(exception.getMessage() + " - " + exception.getCause());
+                }
+            }
+        }
+    }
+
 }

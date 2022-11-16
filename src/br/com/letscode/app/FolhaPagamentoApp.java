@@ -19,7 +19,6 @@ public class FolhaPagamentoApp{
     public static final int TYPE_PRESENTER_KEY_VALUE = 1;
 
     private ArrayList<String> scriptPerguntas;
-    private FolhaPagamentoApp folhaPagamentoApp;
 
     public FolhaPagamentoApp(){
         if (this.scriptPerguntas == null){
@@ -42,15 +41,15 @@ public class FolhaPagamentoApp{
         String strDiasTrabalhados;
         String strDocumentoEmpresa;
 
-        Presenter console = new ConsoleImp();
-
         switch (typePresenter){
             case TYPE_PRESENTER_CONSOLE -> {
+                 Presenter console = new ConsoleImp();
+
                  strTipo = quiz(console, this.scriptPerguntas.get(0));
                  strNome = quiz(console, this.scriptPerguntas.get(1));
                  strNumeroDocumento = quiz(console, this.scriptPerguntas.get(2));
 
-                 if (strTipo.equals("F")) {
+                 if (strTipo.equalsIgnoreCase("F")) {
                      strSalario = quiz(console, this.scriptPerguntas.get(4));
                      strDiasTrabalhados = quiz(console, this.scriptPerguntas.get(5));
                      Funcionario funcionario = new Funcionario(strNome, strNumeroDocumento, new BigDecimal(strSalario), Integer.parseInt(strDiasTrabalhados));
@@ -58,10 +57,13 @@ public class FolhaPagamentoApp{
 
                      funcionario.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
 
-                 }else{
+                 }else if (strTipo.equalsIgnoreCase("T")){
                      strDocumentoEmpresa = quiz(console, this.scriptPerguntas.get(3));
                      Terceiro terceiro = new Terceiro(strNome, strNumeroDocumento, strDocumentoEmpresa);
                      console.print(terceiro);
+
+                 } else{
+                     throw new PresenterException("Falha geral na opção selecionada");
                  }
             }
 
@@ -71,14 +73,14 @@ public class FolhaPagamentoApp{
                 String nome = "joao da silva";
                 String cpf = "22233344455";
                 BigDecimal salario = new BigDecimal("8500.87");
-                int  diasReaisTrabalhados = 22;
+                int  diasReaisTrabalhados = 25;
                 try {
                     Funcionario funcionario = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
 
                     String keyValueAnswer = keyValue.prepare(funcionario);
                     System.out.println(keyValueAnswer);
                 }catch (Exception ex){
-                    throw new PresenterException("");
+                    throw new PresenterException("Falha geral na opção selecionada");
                 }
             }
             default -> System.out.println();

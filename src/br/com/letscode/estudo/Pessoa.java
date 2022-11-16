@@ -2,8 +2,8 @@ package br.com.letscode.estudo;
 
 public class Pessoa implements Banco{
 
-    private String nome;
-    private String numeroDocumento;
+    protected String nome;
+    protected String numeroDocumento;
 
     public Pessoa(String nome, String numeroDocumento) {
         this.nome = nome;
