@@ -19,9 +19,9 @@ public class ItemLista implements Comparable{
         ItemLista lista = (ItemLista) o;
 
         if (lista.getElementoLista() > this.elementoLista) {
-            return 1;
-        } else if (lista.getElementoLista() < this.elementoLista) {
             return -1;
+        } else if (lista.getElementoLista() < this.elementoLista) {
+            return 1;
         } else {
             return lista.getElementoLista().compareTo(this.elementoLista);
         }

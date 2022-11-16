@@ -1,7 +1,7 @@
 package br.com.letscode.bejv002.desafios.classes;
 
 import br.com.letscode.bejv002.desafios.enums.ExerciseStatement;
-import br.com.letscode.bejv002.desafios.utils.Utils;
+import br.com.letscode.utilitarios.UtilitarioMath;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -50,13 +50,13 @@ public class ExerciseSolution7 extends  ExerciseSolution{
         System.out.println("\nITERATE MATRIX");
         while (!isEqual){
             System.out.println("\n==> iterate: " + ++cont );
-            sumMatrix1 = Utils.sumMatrix(matrix1, ROWS, COLUMNS);
+            sumMatrix1 = UtilitarioMath.sumMatrix(matrix1, ROWS, COLUMNS);
             System.out.println("Total Before Matrix = " + sumMatrix1);
             double[][] matrix2 = iterateMatrix(matrix1, ROWS, COLUMNS);
             print(matrix2);
-            sumMatrix2 = Utils.sumMatrix(matrix2, ROWS, COLUMNS);
+            sumMatrix2 = UtilitarioMath.sumMatrix(matrix2, ROWS, COLUMNS);
             System.out.println("Total Current Matrix = " + sumMatrix2);
-            isEqual = Utils.isSumEqual(sumMatrix1, sumMatrix2);
+            isEqual = UtilitarioMath.isSumEqual(sumMatrix1, sumMatrix2);
             matrix1 = matrix2;
         }
 
@@ -85,15 +85,15 @@ public class ExerciseSolution7 extends  ExerciseSolution{
         System.out.println("\nITERATE MATRIX");
         while (!isEqual && cont <= TOTAL_INTERACTION){
             System.out.println("\n==> iterate: " + cont );
-            sumMatrix1 = Utils.sumMatrix(matrix1, ROWS, COLUMNS);
+            sumMatrix1 = UtilitarioMath.sumMatrix(matrix1, ROWS, COLUMNS);
             System.out.println("Total Before Matrix = " + sumMatrix1);
             double[][] matrix2 = iterateMatrix(matrix1, ROWS, COLUMNS);
             print(matrix2);
-            sumMatrix2 = Utils.sumMatrix(matrix2, ROWS, COLUMNS);
+            sumMatrix2 = UtilitarioMath.sumMatrix(matrix2, ROWS, COLUMNS);
             System.out.println("Total Current Matrix = " + sumMatrix2);
-            isEqual = Utils.isSumAcceptableError(sumMatrix1, sumMatrix2, ERROR_ACCEPTABLE);
+            isEqual = UtilitarioMath.isSumAcceptableError(sumMatrix1, sumMatrix2, ERROR_ACCEPTABLE);
             matrix1 = matrix2;
-            diff = Utils.diffTotalMatrix(sumMatrix1, sumMatrix2, 2);
+            diff = UtilitarioMath.diffTotalMatrix(sumMatrix1, sumMatrix2, 2);
             cont++;
         }
 
@@ -151,15 +151,15 @@ public class ExerciseSolution7 extends  ExerciseSolution{
         System.out.println("\nITERATE MATRIX");
         while (!isEqual && cont <= Integer.parseInt(answerInteractions)){
             System.out.println("\n==> iterate: " + cont );
-            sumMatrix1 = Utils.sumMatrix(matrix1, Integer.parseInt(rows), Integer.parseInt(columns));
+            sumMatrix1 = UtilitarioMath.sumMatrix(matrix1, Integer.parseInt(rows), Integer.parseInt(columns));
             System.out.println("Total Before Matrix = " + sumMatrix1);
             double[][] matrix2 = iterateMatrix(matrix1, Integer.parseInt(rows), Integer.parseInt(columns));
             print(matrix2);
-            sumMatrix2 = Utils.sumMatrix(matrix2, Integer.parseInt(rows), Integer.parseInt(columns));
+            sumMatrix2 = UtilitarioMath.sumMatrix(matrix2, Integer.parseInt(rows), Integer.parseInt(columns));
             System.out.println("Total Current Matrix = " + sumMatrix2);
-            isEqual = Utils.isSumAcceptableError(sumMatrix1, sumMatrix2, Double.parseDouble(answerAcceptableErrors));
+            isEqual = UtilitarioMath.isSumAcceptableError(sumMatrix1, sumMatrix2, Double.parseDouble(answerAcceptableErrors));
             matrix1 = matrix2;
-            diff = Utils.diffTotalMatrix(sumMatrix1, sumMatrix2, Integer.parseInt(answerDecimals));
+            diff = UtilitarioMath.diffTotalMatrix(sumMatrix1, sumMatrix2, Integer.parseInt(answerDecimals));
             cont++;
         }
 

@@ -28,8 +28,10 @@ public class ListaMain {
 
         List listaFinal = Arrays.asList(mergedAndOrderedList.toArray());
         Collections.sort(listaFinal);
-        System.out.println("==> LISTA 3- (" + listaFinal.size() + " elementos): " + listaFinal);
+        System.out.println("==> LISTA 3  (" + listaFinal.size() + " elementos): " + listaFinal);
 
+        Collections.reverse(listaFinal);
+        System.out.println("==> LISTA 3- (" + listaFinal.size() + " elementos): " + listaFinal);
 
     }
 }

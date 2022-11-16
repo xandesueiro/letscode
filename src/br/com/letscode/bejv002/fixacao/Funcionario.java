@@ -1,5 +1,7 @@
 package br.com.letscode.bejv002.fixacao;
 
+import br.com.letscode.estudo.Pessoa;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
@@ -7,9 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
-public class Funcionario {
-    private String nome;
-    private String cpf;
+public class Funcionario extends Pessoa {
 
     private BigDecimal salario;
     private BigDecimal salarioProporcional;
@@ -22,14 +22,12 @@ public class Funcionario {
                         String strCPF,
                         BigDecimal dblSalario,
                         int quantidadeDiasReaisTrabalhadosPeloFuncionario) throws Exception {
-
-        this.setNome(strNome);
+        super(strNome, strCPF);
 
         if (strCPF.length() != 11){
             throw new Exception("CPF inválido... precisa conter 11 numeros - sem separadores");
         }
 
-        this.setCpf(strCPF);
         this.setSalario(dblSalario);
         this.setQuantidadeDiasTrabalhado(quantidadeDiasReaisTrabalhadosPeloFuncionario);
         calculaSalarioProporcionalDiasTrabalhados();
@@ -49,19 +47,7 @@ public class Funcionario {
     }
 
     public String getNome() {
-        return nome;
-    }
-
-    private void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    private void setCpf(String cpf) {
-        this.cpf = cpf;
+        return super.getNome();
     }
 
     public BigDecimal getSalario() {
@@ -127,7 +113,7 @@ public class Funcionario {
 
     private String formatarCPF(){
         StringBuilder cpfBlocos = new StringBuilder();
-        char[] charBloco = this.getCpf().toCharArray();
+        char[] charBloco = super.getNumeroDocumento().toCharArray();
 
         for (int i = 0; i < charBloco.length; i++) {
             if (i ==2) {
@@ -155,7 +141,7 @@ public class Funcionario {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Funcionario{ ");
         sb.append("nome= '").append(this.getNome()).append('\'');
-        sb.append(", cpf= '").append(this.getCpf()).append('\'');
+        sb.append(", numero documento= '").append(super.getNumeroDocumento()).append('\'');
         sb.append(", salario= ").append(formatarValoresEmMoedaLocal(this.getSalario()));
         sb.append(" }");
         return sb.toString();
@@ -166,12 +152,12 @@ public class Funcionario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Funcionario that = (Funcionario) o;
-        return Objects.equals(nome, that.nome) && Objects.equals(cpf, that.cpf);
+        return Objects.equals(super.getNumeroDocumento(), that.getNumeroDocumento());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nome, cpf);
+        return Objects.hash(super.getNome(), super.getNumeroDocumento());
     }
 }
 

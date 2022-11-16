@@ -1,9 +1,9 @@
-package br.com.letscode.bejv002.desafios.utils;
+package br.com.letscode.utilitarios;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Utils {
+public class UtilitarioMath {
 
     public static double sumMatrix(double[][] matrix, int totalRows, int totalColumns){
         double sum = 0.00;
