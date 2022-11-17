@@ -11,6 +11,7 @@ import br.com.letscode.presenter.interfaces.Presenter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FolhaPagamentoApp{
@@ -43,7 +44,7 @@ public class FolhaPagamentoApp{
 
         switch (typePresenter){
             case TYPE_PRESENTER_CONSOLE -> {
-                 Presenter console = new ConsoleImp();
+                 Presenter<Scanner, Banco> console = new ConsoleImp();
 
                  strTipo = quiz(console, this.scriptPerguntas.get(0));
                  strNome = quiz(console, this.scriptPerguntas.get(1));
@@ -68,7 +69,7 @@ public class FolhaPagamentoApp{
             }
 
             case TYPE_PRESENTER_KEY_VALUE -> {
-                Presenter keyValue = new KeyValueImp();
+                Presenter<Map, Banco> keyValue = new KeyValueImp();
 
                 String nome = "joao da silva";
                 String cpf = "22233344455";
@@ -87,7 +88,7 @@ public class FolhaPagamentoApp{
         }
     }
 
-    private String quiz(Presenter console, String pergunta) throws PresenterException{
+    private String quiz(Presenter<Scanner, Banco> console, String pergunta) throws PresenterException{
         Scanner scanner = new Scanner(System.in);
         String resposta = "";
 

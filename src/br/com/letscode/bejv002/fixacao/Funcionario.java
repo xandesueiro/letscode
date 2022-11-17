@@ -146,7 +146,7 @@ public class Funcionario extends Pessoa {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Funcionario{ ");
         sb.append("nome= '").append(this.getNome()).append('\'');
-        sb.append(", numero documento= '").append(super.getNumeroDocumento()).append('\'');
+        sb.append(", numero documento= '").append(formatarCPF()).append('\'');
         sb.append(", salario= ").append(formatarValoresEmMoedaLocal(this.getSalario()));
         sb.append(" }");
         return sb.toString();

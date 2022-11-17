@@ -1,14 +1,17 @@
 package br.com.letscode.app;
 
+import br.com.letscode.estudo.Banco;
 import br.com.letscode.presenter.exceptions.PresenterException;
 import br.com.letscode.presenter.implementation.ConsoleImp;
 import br.com.letscode.presenter.interfaces.Presenter;
+
+import java.util.Scanner;
 
 public class MainApp {
 
     public static void main(String[] args) {
         FolhaPagamentoApp folhaPagamentoApp = new FolhaPagamentoApp();
-        Presenter console = new ConsoleImp();
+        Presenter<Scanner, Banco> console = new ConsoleImp();
 
         try {
             System.out.println("\n==============================================================\n");

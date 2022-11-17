@@ -1,18 +1,17 @@
 package br.com.letscode.presenter.interfaces;
 
 import br.com.letscode.estudo.Banco;
-import br.com.letscode.estudo.Pessoa;
 import br.com.letscode.presenter.exceptions.PresenterException;
 
 import java.util.Scanner;
 
-public interface Presenter <T extends Scanner, U extends Banco>{
+public interface Presenter<M, B> {
 
-    void print(U banco) throws PresenterException;
+    void print(Banco banco) throws PresenterException;
 
-    String interagirPerguntas(T scanner, String pergunta) throws PresenterException ;
+    String interagirPerguntas(Scanner scanner, String pergunta) throws PresenterException ;
 
-    String prepare(U banco) throws PresenterException;
+    String prepare(Banco banco) throws PresenterException;
 
 
 }

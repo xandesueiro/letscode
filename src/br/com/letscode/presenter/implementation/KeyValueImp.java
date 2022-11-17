@@ -1,7 +1,6 @@
 package br.com.letscode.presenter.implementation;
 
 import br.com.letscode.estudo.Banco;
-import br.com.letscode.estudo.Pessoa;
 import br.com.letscode.presenter.exceptions.PresenterException;
 import br.com.letscode.presenter.interfaces.Presenter;
 import br.com.letscode.utilitarios.UtilitarioString;
@@ -9,10 +8,10 @@ import br.com.letscode.utilitarios.UtilitarioString;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Map;
 import java.util.Scanner;
 
-public class KeyValueImp implements Presenter {
-
+public class KeyValueImp implements Presenter<Map, Banco> {
 
     @Override
     public void print(Banco banco) throws PresenterException {

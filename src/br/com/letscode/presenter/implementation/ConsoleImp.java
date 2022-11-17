@@ -1,19 +1,16 @@
 package br.com.letscode.presenter.implementation;
 
 import br.com.letscode.estudo.Banco;
-import br.com.letscode.estudo.Pessoa;
 import br.com.letscode.presenter.exceptions.PresenterException;
 import br.com.letscode.presenter.interfaces.Presenter;
 
+import java.util.Map;
 import java.util.Scanner;
 
-public class ConsoleImp implements Presenter{
+public class ConsoleImp implements Presenter<Scanner, Banco> {
 
     private Scanner scanner;
 
-    public ConsoleImp(){
-
-    }
     @Override
     public void print(Banco banco) throws PresenterException {
         System.out.println(banco.toString());
