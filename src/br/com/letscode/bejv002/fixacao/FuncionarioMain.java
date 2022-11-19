@@ -1,5 +1,9 @@
 package br.com.letscode.bejv002.fixacao;
 
+import br.com.letscode.estudo.Funcionario;
+import br.com.letscode.estudo.Pessoa;
+import br.com.letscode.estudo.services.PessoaService;
+
 import java.math.BigDecimal;
 
 public class FuncionarioMain {
@@ -9,31 +13,50 @@ public class FuncionarioMain {
         String cpf;
         BigDecimal salario;
         int diasReaisTrabalhados;
+        PessoaService pessoaService = new PessoaService();
 
         try {
             nome = "joao da silva";
             cpf = "22233344455";
             salario = new BigDecimal("8500.87");
             diasReaisTrabalhados = 22;
-            Funcionario joao = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
+
+            Pessoa joao = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                    nome,
+                    cpf,
+                    salario,
+                    diasReaisTrabalhados,
+                    null);
+
             System.out.println(joao);
-            joao.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
+            pessoaService.imprimirHollerite((Funcionario) joao);
 
             nome = "Maria de Souza Rodrigues";
             cpf = "66677788899";
             salario = new BigDecimal("18500.18");
             diasReaisTrabalhados = 18;
-            Funcionario maria = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
+            Pessoa maria = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                    nome,
+                    cpf,
+                    salario,
+                    diasReaisTrabalhados,
+                    null);
+
             System.out.println(maria);
-            maria.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
+            pessoaService.imprimirHollerite((Funcionario) maria);
 
             nome = "Maria de Souza Rodrigues";
             cpf = "66677788899";
             salario = new BigDecimal("18500.18");
             diasReaisTrabalhados = 25;
-            Funcionario mariaSouza = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
+            Pessoa mariaSouza = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                    nome,
+                    cpf,
+                    salario,
+                    diasReaisTrabalhados,
+                    null);
             System.out.println(mariaSouza);
-            mariaSouza.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
+            pessoaService.imprimirHollerite((Funcionario)mariaSouza);
 
             System.out.println("\n");
             System.out.println("Testes gerais: ");

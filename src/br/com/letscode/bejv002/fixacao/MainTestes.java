@@ -1,5 +1,8 @@
 package br.com.letscode.bejv002.fixacao;
 
+import br.com.letscode.estudo.Funcionario;
+import br.com.letscode.estudo.Pessoa;
+import br.com.letscode.estudo.services.PessoaService;
 import br.com.letscode.utilitarios.UtilitarioString;
 
 import java.lang.reflect.Field;
@@ -9,16 +12,25 @@ import java.math.BigDecimal;
 
 public class MainTestes {
     public static void main(String args[]) {
+        PessoaService pessoaService = new PessoaService();
+
         MainTestes.imprimirEstruturaClasse("br.com.letscode.bejv002.fixacao.Funcionario");
-        Funcionario funcionario = null;
+        Pessoa funcionario = null;
         try {
             String nome = "joao da silva";
             String cpf = "22233344455";
             BigDecimal salario = new BigDecimal("8500.87");
             int diasReaisTrabalhados = 22;
-            funcionario = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
+
+            funcionario = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                    nome,
+                    cpf,
+                    salario,
+                    diasReaisTrabalhados,
+                    null);
+
             System.out.println(funcionario);
-            funcionario.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
+            pessoaService.imprimirHollerite((Funcionario) funcionario);
 
             System.out.println("===========================================================\n\n");
             Class<?> classObj = funcionario.getClass();

@@ -1,5 +1,7 @@
 package br.com.letscode.estudo;
 
+import br.com.letscode.presenter.exceptions.ValidacaoException;
+
 import java.util.Objects;
 
 public class Terceiro extends Pessoa {
@@ -18,9 +20,9 @@ public class Terceiro extends Pessoa {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Terceiro{");
-        sb.append("nome='").append(super.getNome()).append(", \'");
-        sb.append("documento='").append(super.getNumeroDocumento()).append(", \'");
-        sb.append("cnpjEmpresaContratante='").append(cnpjEmpresaContratante).append('\'');
+        sb.append("nome='").append(super.getNome()).append(", '");
+        sb.append("documento='").append(super.getNumeroDocumento()).append(", '");
+        sb.append("cnpjEmpresaContratante='").append(cnpjEmpresaContratante).append(" '");
         sb.append('}');
         return sb.toString();
     }

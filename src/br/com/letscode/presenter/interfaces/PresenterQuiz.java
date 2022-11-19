@@ -5,8 +5,8 @@ import br.com.letscode.presenter.exceptions.PresenterException;
 
 import java.util.Scanner;
 
-public interface Presenter<M, B> {
+public interface PresenterQuiz <T extends Scanner, U extends Banco> extends Presenter {
 
-    void print(Banco banco) throws PresenterException;
+    String interagirPerguntas(T scanner, String pergunta) throws PresenterException ;
 
 }

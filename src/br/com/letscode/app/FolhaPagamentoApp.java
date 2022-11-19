@@ -1,13 +1,16 @@
 package br.com.letscode.app;
 
-import br.com.letscode.bejv002.fixacao.Funcionario;
 import br.com.letscode.estudo.Banco;
-import br.com.letscode.estudo.Terceiro;
+import br.com.letscode.estudo.Funcionario;
+import br.com.letscode.estudo.Pessoa;
+import br.com.letscode.estudo.services.PessoaService;
 import br.com.letscode.presenter.exceptions.PresenterException;
 import br.com.letscode.presenter.exceptions.QuizException;
+import br.com.letscode.presenter.exceptions.ValidacaoException;
 import br.com.letscode.presenter.implementation.ConsoleImp;
 import br.com.letscode.presenter.implementation.KeyValueImp;
-import br.com.letscode.presenter.interfaces.Presenter;
+import br.com.letscode.presenter.interfaces.PresenterKeyValue;
+import br.com.letscode.presenter.interfaces.PresenterQuiz;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class FolhaPagamentoApp{
         }
     }
 
-    public void apresentar(int typePresenter) throws Exception {
+    public void apresentar(int typePresenter) throws ValidacaoException, PresenterException {
         String strTipo;
         String strNome;
         String strNumeroDocumento;
@@ -42,9 +45,11 @@ public class FolhaPagamentoApp{
         String strDiasTrabalhados;
         String strDocumentoEmpresa;
 
+        PessoaService pessoaService = new PessoaService();
+
         switch (typePresenter){
             case TYPE_PRESENTER_CONSOLE -> {
-                 Presenter<Scanner, Banco> console = new ConsoleImp();
+                 PresenterQuiz<Scanner, Banco> console = new ConsoleImp();
 
                  strTipo = quiz(console, this.scriptPerguntas.get(0));
                  strNome = quiz(console, this.scriptPerguntas.get(1));
@@ -53,14 +58,28 @@ public class FolhaPagamentoApp{
                  if (strTipo.equalsIgnoreCase("F")) {
                      strSalario = quiz(console, this.scriptPerguntas.get(4));
                      strDiasTrabalhados = quiz(console, this.scriptPerguntas.get(5));
-                     Funcionario funcionario = new Funcionario(strNome, strNumeroDocumento, new BigDecimal(strSalario), Integer.parseInt(strDiasTrabalhados));
+
+                     Pessoa funcionario = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                                                                            strNome,
+                                                                            strNumeroDocumento,
+                                                                            new BigDecimal(strSalario),
+                                                                            Integer.parseInt(strDiasTrabalhados),
+                                                                            null);
+
                      console.print(funcionario);
 
-                     funcionario.imprimirHollerite(Funcionario.DATA_FORMATO_DD_MM_YYY_HH_MM_SS_SEPARADOR_BARRA);
+                     pessoaService.imprimirHollerite((Funcionario)funcionario);
 
                  }else if (strTipo.equalsIgnoreCase("T")){
                      strDocumentoEmpresa = quiz(console, this.scriptPerguntas.get(3));
-                     Terceiro terceiro = new Terceiro(strNome, strNumeroDocumento, strDocumentoEmpresa);
+
+                     Pessoa terceiro = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_TERCEIRO,
+                             strNome,
+                             strNumeroDocumento,
+                             null,
+                             0,
+                             strDocumentoEmpresa);
+
                      console.print(terceiro);
 
                  } else{
@@ -69,26 +88,28 @@ public class FolhaPagamentoApp{
             }
 
             case TYPE_PRESENTER_KEY_VALUE -> {
-                Presenter<Map, Banco> keyValue = new KeyValueImp();
+                PresenterKeyValue<Map, Banco> keyValue = new KeyValueImp();
 
                 String nome = "joao da silva";
                 String cpf = "22233344455";
                 BigDecimal salario = new BigDecimal("8500.87");
                 int  diasReaisTrabalhados = 25;
-                try {
-                    Funcionario funcionario = new Funcionario(nome, cpf, salario, diasReaisTrabalhados);
 
-                    String keyValueAnswer = keyValue.prepare(funcionario);
-                    System.out.println(keyValueAnswer);
-                }catch (Exception ex){
-                    throw new PresenterException("Falha geral na opção selecionada");
-                }
+                Pessoa funcionario = pessoaService.carregarPessoa(PessoaService.TIPO_PESSOA_FUNCIONARIO,
+                        nome,
+                        cpf,
+                        salario,
+                        diasReaisTrabalhados,
+                        null);
+
+                String keyValueAnswer = keyValue.execute(funcionario);
+                System.out.println(keyValueAnswer);
             }
             default -> System.out.println();
         }
     }
 
-    private String quiz(Presenter<Scanner, Banco> console, String pergunta) throws PresenterException{
+    private String quiz(PresenterQuiz<Scanner, Banco> console, String pergunta) throws PresenterException{
         Scanner scanner = new Scanner(System.in);
         String resposta = "";
 

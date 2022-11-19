@@ -4,6 +4,7 @@ public class PresenterException extends Exception{
     private String error;
 
     public PresenterException(String errorMessage){
+        super();
         StringBuffer sb = new StringBuffer();
         sb.append("ERROR... WATCH OUT!\n");
         sb.append("Error message: " + errorMessage + " \n");
